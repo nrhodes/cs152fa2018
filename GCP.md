@@ -37,7 +37,7 @@ gcloud compute instances create cs152x \
 5. Open an ssh window to your new instance. Note that we are setting up ssh forwarding so that any references to port 8888 on our local host will be redirected to port 8888 on our GCE instance (which, eventually, will be running our Jupyter server).
 ```
 gcloud compute ssh cs152 --ssh-flag="-L" --ssh-flag="8888:localhost:8888"  
-````
+```
 
 
 --create-disk=image=ubuntu-1604-lts,image-project=ubuntu-os-cloud \
