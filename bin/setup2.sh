@@ -1,10 +1,12 @@
 if [[ ! -d downloads ]]; then
         mkdir -p downloads
+        pushd downloads
         wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
         bash Anaconda3-5.0.1-Linux-x86_64.sh -b
         echo 'export PATH=~/anaconda3/bin:$PATH' >> ~/.bashrc
+        export PATH="~/anaconda3/bin:$PATH"
+        popd
 fi
-source ~/.bashrc
 conda create --name cs152 python=3.6
 source activate cs152
 pip install ipykernel

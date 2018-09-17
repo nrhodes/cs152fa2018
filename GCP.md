@@ -22,14 +22,15 @@
 ```
 gcloud auth activate-service-account [client_email] --key-file=[json_file_path]```
         where client\_email is in the json file (look for the ```client_email`` field in the json file) downloaded and json\_file\_path is the path to the json file
+		
 4. Now, you can run ```gcloud init``` from your local terminal window
-    1. Follow the instructions and choose ```[11] us-west1-b``
+    1. Use defaults except:
+		 * when prompted *API [cloudresourcemanager.googleapis.com] not enabled on project. Would you like to anable and retry (this wkll take a few minutes)?*, answer ```Y```
+	     * when asked  *Which Google Compute Engine zone would you like to use as project default?*, answer ```[11] us-west1-b``.
 
 
 
 
-
-```
 ### Use Google Cloud SDK to get an instance created and running
 Run all these commands from your local terminal window.
 
