@@ -1,6 +1,9 @@
 # Running on Google Compute Platform
 
 ## One-time
+
+Let's get the google cloud SDK installed, and get an instance created and running, and let's login to it.
+
 1. Install [Google Cloud SDK[https://cloud.google.com/sdk/install] on your local machine. (For Mac OS, you'll want to use the interactive installer). Warning, when the instructions say to do:
 ```
 gcloud init
@@ -39,7 +42,33 @@ gcloud compute instances create cs152x \
 gcloud compute ssh cs152 --ssh-flag="-L" --ssh-flag="8888:localhost:8888"  
 ```
 
+Now, it's time to start installing/configuring software
 
---create-disk=image=ubuntu-1604-lts,image-project=ubuntu-os-cloud \
+First, let's pull in our repository that contains our scripts (along with our notebooks, and so on):
+```
+  git clone https://github.com/nrhodes/cs152.git 
+```
+
+Next, let's run our first script:
+
+```
+cs152/bin/setup.sh
+```
+
+
+
+### Stopping and Starting
+
+#### Stopping your instance
+```
+gcloud compute instances stop cs152
+```
+
+#### Starting your instance
+```
+gcloud compute instances start cs152
+```
+
+
 
 
