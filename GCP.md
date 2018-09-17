@@ -103,6 +103,18 @@ gcloud compute instances stop cs152
 gcloud compute instances start cs152
 ```
 
+Once your instance is running, you can ssh into it: 
+```
+gcloud compute ssh cs152 --ssh-flag="-L" --ssh-flag="8888:localhost:8888"  
+```
+and then run jupyter notebook (from your SSH window):
+```
+source activate cs152 # enter cs152 virtual environment
+jupyter lab    # run jupyter lab
+```
+
+You'll see a line in the jupyter lab output that looks like:
+
 
 
 
