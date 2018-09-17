@@ -72,6 +72,22 @@ Next, let's run our first script:
 cs152/bin/setup.sh
 ```
 
+After this is successful, then restart your GCP instance:
+```
+sudo reboot
+```
+
+Now, ssh back into your instance:
+```
+gcloud compute ssh cs152 --ssh-flag="-L" --ssh-flag="8888:localhost:8888"  
+```
+
+
+Next, let's run our second script:
+
+```
+cs152/bin/setup2.sh
+```
 
 
 ### Stopping and Starting
