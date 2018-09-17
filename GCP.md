@@ -5,9 +5,9 @@
 ### Get Google Cloud SDK Installed
 
 
-1. Install [Google Cloud SDK[https://cloud.google.com/sdk/install] on your local machine. (For Mac OS and Windows, you'll want to use the interactive installer at [https://cloud.google.com/sdk/docs/downloads-interactive]).  Run only steps 1 and steps 2 (_don't *run step 3 ```gcloud init``` yet_).
+1. Install [Google Cloud SDK](https://cloud.google.com/sdk/install) on your local machine. (For Mac OS and Windows, you'll want to use the interactive installer at [https://cloud.google.com/sdk/docs/downloads-interactive]).  Run only steps 1 and steps 2 (_don't *run step 3 ```gcloud init``` yet_). For steps 1 and 2, you can answer any questions with default (just hit Enter).
 
-2. Go to [console.cloud.google.com]
+2. Go to the [GCP Console](console.cloud.google.com) 
 
 3. Create a Service account
 
@@ -18,10 +18,12 @@
     5. Select type as JSON
 	   A json file will be downloaded. Save file locally and find the path to json file
        
-4. Now, you can run ```gcloud init```
+3. Now it's time to authenticate:
+```
+gcloud auth activate-service-account [client_email] [json_file_path]```
+        where client\_email is in the json file (look for the ```client_email`` field in the json file) downloaded and json\_file\_path is the path to json file
+4. Now, you can run ```gcloud init``` from your local terminal window
     1. Follow the instructions and choose ```[11] us-west1-b``
-	2. When prompted run command ```gcloud auth activate-service-account [client_email] [json_file_path]```
-        where client_email key’s value is in the json file downloaded and json_file_path is the path to json file
 
 
 
@@ -29,7 +31,9 @@
 
 ```
 ### Use Google Cloud SDK to get an instance created and running
-2. Set your default Google Cloud zone (us-west1-b has GPU instances):
+Run all these commands from your local terminal window.
+
+2. Set your default Google Cloud zone (us-west1-b has GPU instances): 
 ```
 gcloud config set compute/zone us-west1-b
 ```
