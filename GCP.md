@@ -2,16 +2,33 @@
 
 ## One-time
 
-Let's get the google cloud SDK installed, and get an instance created and running, and let's login to it.
+### Get Google Cloud SDK Installed
 
-1. Install [Google Cloud SDK[https://cloud.google.com/sdk/install] on your local machine. (For Mac OS, you'll want to use the interactive installer). Warning, when the instructions say to do:
+
+1. Install [Google Cloud SDK[https://cloud.google.com/sdk/install] on your local machine. (For Mac OS and Windows, you'll want to use the interactive installer at [https://cloud.google.com/sdk/docs/downloads-interactive]).  Run only steps 1 and steps 2 (_don't *run step 3 ```gcloud init``` yet_).
+
+2. Go to [console.cloud.google.com]
+
+3. Create a Service account
+
+    1. On the left bar, go to IAM & admin -> Service accounts
+    2. Add a Service Account name
+    3. Specify project role as owner [project -> owner]
+    4. Select “furnish a new private key”
+    5. Select type as JSON
+	   A json file will be downloaded. Save file locally and find the path to json file
+       
+4. Now, you can run ```gcloud init```
+    1. Follow the instructions and choose ```[11] us-west1-b``
+	2. When prompted run command ```gcloud auth activate-service-account [client_email] [json_file_path]```
+        where client_email key’s value is in the json file downloaded and json_file_path is the path to json file
+
+
+
+
+
 ```
-gcloud init
-```
-Instead, run:
-```
-gcloud auth application-default login
-```
+### Use Google Cloud SDK to get an instance created and running
 2. Set your default Google Cloud zone (us-west1-b has GPU instances):
 ```
 gcloud config set compute/zone us-west1-b
