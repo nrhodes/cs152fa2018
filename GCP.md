@@ -24,7 +24,7 @@ gcloud compute firewall-rules create default-allow-jupyterx \
 ```
 4. Create a GCE instance named cs15 (once complete, this instance *will be running*. Make sure to stop it once you are done):
 ```
-gcloud compute instances create cs152x \
+gcloud compute instances create cs152 \
 --accelerator=count=1,type=nvidia-tesla-k80 \
 --boot-disk-size=30GB \
 --image-family ubuntu-1604-lts \
