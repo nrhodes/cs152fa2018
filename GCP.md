@@ -20,7 +20,8 @@
        
 3. Now it's time to authenticate:
 ```
-gcloud auth activate-service-account [client_email] --key-file=[json_file_path]```
+gcloud auth activate-service-account [client_email] --key-file=[json_file_path]
+```
         where client\_email is in the json file (look for the ```client_email`` field in the json file) downloaded and json\_file\_path is the path to the json file
 		
 4. Now, you can run ```gcloud init``` from your local terminal window
