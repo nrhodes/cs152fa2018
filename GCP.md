@@ -34,10 +34,6 @@ gcloud auth activate-service-account [client_email] --key-file=[json_file_path]`
 ### Use Google Cloud SDK to get an instance created and running
 Run all these commands from your local terminal window.
 
-2. Set your default Google Cloud zone (us-west1-b has GPU instances): 
-```
-gcloud config set compute/zone us-west1-b
-```
 3. Add a firewall rule (this will allow incoming connections to your jupyter server):
 ```
 gcloud compute firewall-rules create default-allow-jupyterx \
