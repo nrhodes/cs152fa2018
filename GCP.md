@@ -24,7 +24,8 @@ gcloud compute firewall-rules create default-allow-jupyterx \
 gcloud compute instances create cs152x \
 --accelerator=count=1,type=nvidia-tesla-k80 \
 --boot-disk-size=30GB \
---create-disk=image=ubuntu-1604-lts \
+--image-family ubuntu-1604-lts \
+--image-project ubuntu-os-cloud \
 --machine-type=n1-standard-4 \
 --preemptible \
 --tags=jupyter 
