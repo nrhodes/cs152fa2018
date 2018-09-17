@@ -41,6 +41,7 @@ gcloud compute firewall-rules create default-allow-jupyterx \
 --target-tags=jupyter
 ```
 4. Create a GCE instance named cs15 (once complete, this instance *will be running*. Make sure to stop it once you are done):
+
 ```
 gcloud compute instances create cs152 \
 --accelerator=count=1,type=nvidia-tesla-k80 \
@@ -51,14 +52,15 @@ gcloud compute instances create cs152 \
 --preemptible \
 --tags=jupyter 
 ```
-    * If you want (and are willing to pay for) an SSD, add the following option to the previous command:
-    ````
+
+    * If you want (and are willing to pay for) an SSD, add the following option to the previous command:```
     --boot-disk-type=pd-ssd
     ```
 5. Open an ssh window to your new instance. Note that we are setting up ssh forwarding so that any references to port 8888 on our local host will be redirected to port 8888 on our GCE instance (which, eventually, will be running our Jupyter server).
 ```
 gcloud compute ssh cs152 --ssh-flag="-L" --ssh-flag="8888:localhost:8888"  
 ```
+You may see some warnings.  You'll be prompted for a passphrase for your SSH private key.  You can leave it empty.
 
 Now, it's time to start installing/configuring software
 
@@ -90,6 +92,12 @@ Next, let's run our second script:
 cs152/bin/setup2.sh
 ```
 
+At this point, your machine should be all set up.  Stop your instance:
+```
+gcloud compute instances stop cs152
+```
+.
+
 
 ### Stopping and Starting
 
@@ -114,7 +122,11 @@ jupyter lab    # run jupyter lab
 ```
 
 You'll see a line in the jupyter lab output that looks like:
+```Copy/paste this URL into your bowser when you connect for the first time, 
+   to login with a token:
+     http://localhost:8888/?token=ksdfkjasdkfjaskdjaskdjfasdkjaskdjfads
+```
 
-
+Copy the link beginning with ```localhost``` and paste it into your local web browser.  That should connect to your Jupyter server. 
 
 
