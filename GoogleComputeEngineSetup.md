@@ -15,7 +15,7 @@ A simpler approach is to use Google Cloud Shell which provides a virtual machine
 1. Go to Google Cloud Console](https://console.cloud.google.com).
 
 1. Run Google Cloud Shell. Either follow this LINK, or click on the icon at the top-left of the screen (icon looks like a command line):
-![alt Picture of toolbar](/images/toolbar.jpg "Picture of toolbar")
+![alt Picture of toolbar](images/toolbar.png "Picture of toolbar")
 
 1. Set your default zone in which to create instances:
 ```
