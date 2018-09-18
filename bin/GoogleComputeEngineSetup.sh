@@ -3,6 +3,8 @@
 # This script will initialize an Ubuntu 16.04 system (containing an Nvidia GPU) to
 # be setup for Harvey Mudd College CS 152 course (Neural Networks).
 
+# Much of the script is based on https://github.com/howkhang/fastai-v2-setup/blob/master/setup.sh
+
 # 9/18/18
 # Neil Rhodes
 # rhodes@hmc.edu
@@ -56,7 +58,8 @@ pushd downloads
 # at top-leel and also within an environment (causes problems with
 # ipywidgets.
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+# -b flag means quiet/unattended.  Won't ask questions, won't write to .bashrc
+bash Miniconda3-latest-Linux-x86_64.sh -b
 echo 'export PATH=~/miniconda3/bin:$PATH' >> ~/.bashrc
 export PATH="~/miniconda3/bin:$PATH"
 popd
@@ -75,7 +78,7 @@ source activate cs152
 #python -m ipykernel install --user --name cs152 --display-name "Python (cs152)"
 
 # Install ipywidgets using conda.  That'll automatically enable the extensions.
-conda install -c conda-forge ipywidgets
+conda install -c conda-forge ipywidgets -y
 
 #pip install ipywidgets
 #pip install jupyter
@@ -89,6 +92,16 @@ conda install -c conda-forge ipywidgets
 # commit (as happend on 9/16/18).
 pip install --user git+git://github.com/fastai/fastai.git@cb121994872fbd5f4ee67de01bcb9848a7e54a6b
 
+# Setup Jupyter config so that it is listening not just on local network
+# but also on external network.  Otherwise, we can't reach it via its IP address.
+cat >  ~/.jupyter/jupyter_notebook_config.py << HERE_DOC
+c = get_config()
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+HERE_DOC
+
+
+conda install -c conda-forge jupyterlab -y
 
 # Clone our github repository.
 if [[ ! -d cs152 ]]; then
