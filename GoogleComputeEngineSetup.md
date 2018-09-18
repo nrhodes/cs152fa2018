@@ -14,20 +14,22 @@ A simpler approach is to use Google Cloud Shell which provides a virtual machine
 
 1. Go to Google Cloud Console](https://console.cloud.google.com).
 
-1. Run Google Cloud Shell. Either follow this LINK, or click on the icon at the top-left of the screen (icon looks like a command line):
+2. Run Google Cloud Shell. Either follow this LINK, or click on the icon at the top-left of the screen (icon looks like a command line):
 ![alt Picture of toolbar](images/toolbar.png "Picture of toolbar")
 
-1. Set your default zone in which to create instances:
+3. Set your default zone in which to create instances:
 ```
 gcloud config set compute/zone us-west1-b
 ```
-1. Add a firewall rule (this will allow incoming connections to your jupyter server):
+
+4. Add a firewall rule (this will allow incoming connections to your jupyter server):
 ```
 gcloud compute firewall-rules create default-allow-jupyterx \
 --allow tcp:8888-8889 \
 --target-tags=jupyter
 ```
-2. Create a GCE instance named *cs152* (once complete, this instance *will be running*. Make sure to stop it once you are done):
+
+5. Create a GCE instance named *cs152* (once complete, this instance *will be running*. Make sure to stop it once you are done):
 ```
 gcloud compute instances create cs152 \
 --accelerator=count=1,type=nvidia-tesla-k80 \
@@ -52,21 +54,23 @@ Now, it's time to start installing/configuring software.
 gcloud compute ssh cs152 
 ```
 You may see some warnings.  You'll be prompted for a passphrase for your SSH private key.  You can leave it empty.
-1. Pull in our repository that contains our scripts (along with our notebooks, and so on). (Executed  on our cs152 GCE instance).
+
+2. Pull in our repository that contains our scripts (along with our notebooks, and so on). (Executed  on our cs152 GCE instance).
 ```
   git clone https://github.com/nrhodes/cs152.git 
 ```
-2. Run our script (executed  on our cs152 GCE instance):
+
+3. Run our script (executed  on our cs152 GCE instance):
 ```
 cs152/bin/GoogleComputeEngineSetup.sh
 ```
 
-3. Logout of your GCE instance/SSH session:
+4. Logout of your GCE instance/SSH session:
 ```
 exit
 ```
 
-1. At this point, your machine should be all set up.  Stop your instance (so that we can reboot with the new  GPU drivers).
+5. At this point, your machine should be all set up.  Stop your instance (so that we can reboot with the new  GPU drivers).
 ```
 gcloud compute instances stop cs152
 ```
@@ -82,7 +86,7 @@ gcloud compute instances stop cs152
 gcloud compute instances start cs152
 ```
 
-1. Check the instance's IP address:
+2. Check the instance's IP address:
 ```
 gcloud compute instances list
 ```
@@ -93,18 +97,18 @@ cs152  us-west1-b  n1-standard-4  true         10.138.0.7   35.230.49.129  RUNNI
 ```
 You are interested in the EXTERNAL\_IP address (last column from the right). Copy that IP address; you'll need it later.
 
-2. Once your instance is running, you can ssh into it. Note that we are setting up ssh forwarding so that any references to port 8888 on our local host will be redirected to port 8888 on our GCE instance (which will be running our Jupyter server).
+3. Once your instance is running, you can ssh into it. Note that we are setting up ssh forwarding so that any references to port 8888 on our local host will be redirected to port 8888 on our GCE instance (which will be running our Jupyter server).
 
 ```
 gcloud compute ssh cs152
 ```
 
-3. Run jupyter lab (from your SSH window):
+4. Run jupyter lab (from your SSH window):
 ```
 jupyter lab
 ```
 
-4. You'll see a line in the jupyter lab output that looks like:
+5. You'll see a line in the jupyter lab output that looks like:
 ```Copy/paste this URL into your bowser when you connect for the first time, 
    to login with a token:
      http://(cs152 or 127.0.0.1):8888/?token=b085b4e2e8065317e317320533a97193535f64f063f22bba
@@ -166,11 +170,11 @@ Once you've done this setup, you can choose to use gcloud from your local machin
 
 These are an outline of steps, not complete steps.
 
-2. Setup a static IP address to connect to:
+1. Setup a static IP address to connect to:
 ```
 gcloud compute addresses create test-static --region us-west1
 
-3. Set a shell variable to the newly-allocated static IP address:
+2. Set a shell variable to the newly-allocated static IP address:
 ```
 IP=`gcloud compute addresses list | awk '/test-static/{print $3}'`
 echo $IP
