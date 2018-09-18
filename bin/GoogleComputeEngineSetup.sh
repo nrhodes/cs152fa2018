@@ -12,6 +12,8 @@
 # Make the scripts non-interactive (don't ask questions)
 DEBIAN_FRONTEND=noninteractive
 
+echo "Starting install at `date`"
+
 # Unclear why this is needed:)
 sudo apt -y install qtdeclarative5-dev qml-module-qtquick-controls
 sudo add-apt-repository ppa:graphics-drivers/ppa -y
@@ -66,26 +68,15 @@ popd
 
 # Create our Conda environment named cs152.  That's where we'll install all
 # our stuff.
-conda create --name cs152 python=3.6
+conda create --name cs152 -y python=3.6
 
 # Make activation automatic on login
 echo 'source activate cs152' >> ~/.bashrc
 # Activate now
 source activate cs152
 
-#pip install ipykernel
-
-#python -m ipykernel install --user --name cs152 --display-name "Python (cs152)"
-
 # Install ipywidgets using conda.  That'll automatically enable the extensions.
 conda install -c conda-forge ipywidgets -y
-
-#pip install ipywidgets
-#pip install jupyter
-#sudo `which jupyter` nbextension enable --py widgetsnbextension --sys-prefix
-#pip3 install --user wheel
-#pip3 install --user setuptools
-#pip install fastai
 
 # Install a particular version of fastai (dated around 9/15/18). We do this so all
 # students are running the same version and so we don't get an accidental fatal 
@@ -94,6 +85,7 @@ pip install --user git+git://github.com/fastai/fastai.git@cb121994872fbd5f4ee67d
 
 # Setup Jupyter config so that it is listening not just on local network
 # but also on external network.  Otherwise, we can't reach it via its IP address.
+mkdir -p ~/.jupyter
 cat >  ~/.jupyter/jupyter_notebook_config.py << HERE_DOC
 c = get_config()
 c.NotebookApp.ip = '*'
@@ -122,4 +114,6 @@ if [[ ! -d dogscats ]]; then
   rm dogscats.zip
 fi
 popd
+
+echo "Finished install at `date`"
 
