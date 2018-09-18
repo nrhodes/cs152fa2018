@@ -21,14 +21,13 @@ A simpler approach is to use Google Cloud Shell which provides a virtual machine
 ```
 gcloud config set compute/zone us-west1-b
 ```
-
 1. Add a firewall rule (this will allow incoming connections to your jupyter server):
 ```
 gcloud compute firewall-rules create default-allow-jupyterx \
 --allow tcp:8888-8889 \
 --target-tags=jupyter
 ```
-2. Create a GCE instance named cs15 (once complete, this instance *will be running*. Make sure to stop it once you are done):
+2. Create a GCE instance named *cs152* (once complete, this instance *will be running*. Make sure to stop it once you are done):
 ```
 gcloud compute instances create cs152 \
 --accelerator=count=1,type=nvidia-tesla-k80 \
@@ -48,17 +47,15 @@ gcloud compute instances create cs152 \
 #### Install Software on instance
 Now, it's time to start installing/configuring software.
 
-3. Open an ssh window to your new instance.
+1. Open an ssh window to your new instance.
 ```
 gcloud compute ssh cs152 
 ```
 You may see some warnings.  You'll be prompted for a passphrase for your SSH private key.  You can leave it empty.
-
 1. Pull in our repository that contains our scripts (along with our notebooks, and so on). (Executed  on our cs152 GCE instance).
 ```
   git clone https://github.com/nrhodes/cs152.git 
 ```
-
 2. Run our script (executed  on our cs152 GCE instance):
 ```
 cs152/bin/GoogleComputeEngineSetup.sh
