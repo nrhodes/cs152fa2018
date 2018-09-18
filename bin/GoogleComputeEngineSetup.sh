@@ -83,6 +83,10 @@ conda install -c conda-forge ipywidgets -y
 # commit (as happend on 9/16/18).
 pip install --user git+git://github.com/fastai/fastai.git@cb121994872fbd5f4ee67de01bcb9848a7e54a6b
 
+
+# Install Kaggle command-line interface
+pip install kaggle-cli
+
 # Setup Jupyter config so that it is listening not just on local network
 # but also on external network.  Otherwise, we can't reach it via its IP address.
 mkdir -p ~/.jupyter
