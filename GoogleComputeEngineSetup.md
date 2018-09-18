@@ -15,7 +15,7 @@ A simpler approach is to use Google Cloud Shell which provides a virtual machine
 1. Go to Google Cloud Console](https://console.cloud.google.com).
 
 1. Run Google Cloud Shell. Either follow this LINK, or click on the icon at the top-left of the screen (icon looks like a command line):
-NEED PICTURE HERE
+![alt Picture of toolbar](/images/toolbar.jpg "Picture of toolbar")
 
 1. Set your default zone in which to create instances:
 ```
@@ -54,7 +54,7 @@ gcloud compute ssh cs152
 ```
 You may see some warnings.  You'll be prompted for a passphrase for your SSH private key.  You can leave it empty.
 
-1. Pull in our repository that contains our scripts (along with our notebooks, and so on). (Ececuted  on our cs152 GCE instance).
+1. Pull in our repository that contains our scripts (along with our notebooks, and so on). (Executed  on our cs152 GCE instance).
 ```
   git clone https://github.com/nrhodes/cs152.git 
 ```
@@ -69,7 +69,7 @@ cs152/bin/GoogleComputeEngineSetup.sh
 exit
 ```
 
-1. At this point, your machine should be all set up.  Stop your instance (so that the GPU drivers are available).
+1. At this point, your machine should be all set up.  Stop your instance (so that we can reboot with the new  GPU drivers).
 ```
 gcloud compute instances stop cs152
 ```
@@ -85,6 +85,17 @@ gcloud compute instances stop cs152
 gcloud compute instances start cs152
 ```
 
+1. Check the instance's IP address:
+```
+gcloud compute instances list
+```
+The command will output something of the form:
+```
+NAME    ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
+cs152  us-west1-b  n1-standard-4  true         10.138.0.7   35.230.49.129  RUNNING
+```
+You are interested in the EXTERNAL\_IP address (last column from the right). Copy that IP address; you'll need it later.
+
 2. Once your instance is running, you can ssh into it. Note that we are setting up ssh forwarding so that any references to port 8888 on our local host will be redirected to port 8888 on our GCE instance (which will be running our Jupyter server).
 
 ```
@@ -93,7 +104,7 @@ gcloud compute ssh cs152
 
 3. Run jupyter lab (from your SSH window):
 ```
-jupyter lab    # run jupyter lab
+jupyter lab
 ```
 
 4. You'll see a line in the jupyter lab output that looks like:
@@ -102,7 +113,10 @@ jupyter lab    # run jupyter lab
      http://(cs152 or 127.0.0.1):8888/?token=b085b4e2e8065317e317320533a97193535f64f063f22bba
 ```
 
-Copy the link, paste it into your browser, and change the hostname (between ```//``` and ```:8888``` to the IP address you saved earlier). That should connect to your Jupyter server.   Bookmark this page so that you don't have to remember (or write down) the IP address.
+Copy the link, paste it into your browser, and change the hostname (between ```//``` and ```:8888``` to the IP address you saved earlier). That should connect to your Jupyter server.   If you want to pay extra (approximately 25 cents/day), you can create a static IP address for your instance.  That way, you can just bookmark the Jupyter URL and not have to re-figure out the IP address each time. 
+
+
+When you are ready to kill jupyter lab, type ctrl-C, and then respond Y to the prompt.
 
 
 ### Stopping your instance
@@ -115,10 +129,10 @@ gcloud compute instances stop cs152
 gcloud compute instances list
 ```
 
-
-#### SSHing from Windows
-
-Use Putty. NEED INFO HERE
+### Delete an instance
+```
+gcloud compute instances delete cs152
+```
 
 
 ### Get Google Cloud SDK Installed on your local machine (optional)
@@ -151,6 +165,10 @@ Use Putty. NEED INFO HERE
 Once you've done this setup, you can choose to use gcloud from your local machine rather than running it from Google Cloud Shell.
 
 
+### Setting up static IP address (OPTIONAL)
+
+These are an outline of steps, not complete steps.
+
 2. Setup a static IP address to connect to:
 ```
 gcloud compute addresses create test-static --region us-west1
@@ -160,6 +178,8 @@ gcloud compute addresses create test-static --region us-west1
 IP=`gcloud compute addresses list | awk '/test-static/{print $3}'`
 echo $IP
 ```
-Make a note of the IP address that was just printed out.  You'll need it later.
 
+3. When you create your instance, add the flag:
+```
+--address=$IP
 ```
