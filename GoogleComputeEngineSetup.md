@@ -24,7 +24,7 @@ gcloud config set compute/zone us-west1-b
 
 4. Add a firewall rule (this will allow incoming connections to your jupyter server):
 ```
-gcloud compute firewall-rules create default-allow-jupyterx \
+gcloud compute firewall-rules create default-allow-jupyter \
 --allow tcp:8888-8889 \
 --target-tags=jupyter
 ```
