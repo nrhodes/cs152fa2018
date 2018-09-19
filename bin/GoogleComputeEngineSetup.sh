@@ -85,7 +85,7 @@ pip install --user git+git://github.com/fastai/fastai.git@cb121994872fbd5f4ee67d
 
 
 # Install Kaggle command-line interface
-pip install kaggle-cli
+pip install kaggle
 
 # Setup Jupyter config so that it is listening not just on local network
 # but also on external network.  Otherwise, we can't reach it via its IP address.
