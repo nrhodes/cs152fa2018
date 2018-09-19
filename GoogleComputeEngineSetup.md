@@ -141,7 +141,7 @@ gcloud compute instances delete cs152
 
 1. Install [Google Cloud SDK](https://cloud.google.com/sdk/install) on your local machine. (For Mac OS and Windows, you'll want to use the interactive installer at [https://cloud.google.com/sdk/docs/downloads-interactive]).  Run only steps 1 and steps 2 (_don't *run step 3 ```gcloud init``` yet_). For steps 1 and 2, you can answer any questions with default (just hit Enter).
 
-2. Go to the [GCP Console](console.cloud.google.com) 
+2. Go to the [GCP Console](https://console.cloud.google.com) 
 
 3. Create a Service account
 
