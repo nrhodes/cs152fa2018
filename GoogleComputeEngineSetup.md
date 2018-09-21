@@ -45,7 +45,7 @@ gcloud compute instances create cs152 \
 --boot-disk-type=pd-ssd
     ```
 	
-    If you want (and are willing to pay for) non-preemptible, replace:```
+If you want (and are willing to pay for) non-preemptible, replace:```
 ----preemptible
      ```
 	 with:
