@@ -42,8 +42,16 @@ gcloud compute instances create cs152 \
 ```
 
    If you want (and are willing to pay for) an SSD, add the following option to the previous command:```
-    --boot-disk-type=pd-ssd
+--boot-disk-type=pd-ssd
     ```
+	
+    If you want (and are willing to pay for) non-preemptible, replace:```
+----preemptible
+     ```
+	 with:
+	 ```
+--maintenance-policy TERMINATE --restart-on-failure \
+	      ```
 	
 
 #### Install Software on instance
