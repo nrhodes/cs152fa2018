@@ -50,7 +50,7 @@ If you want (and are willing to pay for) non-preemptible, replace:```
      ```
 	 with:
 	 ```
---maintenance-policy TERMINATE --restart-on-failure \
+--maintenance-policy TERMINATE --restart-on-failure
 	      ```
 	
 
