@@ -94,6 +94,7 @@ cat >  ~/.jupyter/jupyter_notebook_config.py << HERE_DOC
 c = get_config()
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
+c.NotebookApp.allow_remote_access = True
 HERE_DOC
 
 
