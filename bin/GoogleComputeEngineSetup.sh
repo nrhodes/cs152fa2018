@@ -83,6 +83,9 @@ conda install -c conda-forge ipywidgets -y
 # commit (as happend on 9/16/18).
 pip install --user git+git://github.com/fastai/fastai.git@cb121994872fbd5f4ee67de01bcb9848a7e54a6b
 
+# Install this version because 0.3.1 causes a failure
+pip install torchtext==0.2.3
+
 
 # Install Kaggle command-line interface
 pip install kaggle
