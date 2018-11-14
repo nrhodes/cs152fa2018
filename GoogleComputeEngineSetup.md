@@ -53,6 +53,9 @@ If you want (and are willing to pay for) non-preemptible, replace:```
 --maintenance-policy TERMINATE --restart-on-failure
 	      ```
 	
+If you don't want a GPU machine, remove:```
+--accelerator=count=1,type=nvidia-tesla-k80 \
+```
 
 #### Install Software on instance
 Now, it's time to start installing/configuring software.
