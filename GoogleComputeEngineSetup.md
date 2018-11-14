@@ -52,6 +52,12 @@ If you want (and are willing to pay for) non-preemptible, replace:```
 	 ```
 --maintenance-policy TERMINATE --restart-on-failure
 	      ```
+		  
+If you want a non-GPU machine, remove the line:
+
+```
+--accelerator=count=1,type=nvidia-tesla-k80 \
+```
 	
 If you don't want a GPU machine, remove:```
 --accelerator=count=1,type=nvidia-tesla-k80 \
